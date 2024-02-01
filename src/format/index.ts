@@ -12,12 +12,18 @@ export function formatQuestion(question: string): string {
 
     if (json.question) {
       output += json.question;
+    } else if (json.message) {
+      output += json.message;
     }
+    
     if (json.options) {
       output += "\nOptions:\n" + json.options.join("\n\t- ");
+    } else if (json.choices) {
+      output += "\nChoices:\n" + json.choices.join("\n\t- ");
     }
 
-    return output;
+    if (output.length > 0) return output;
+    else return question;
   } catch (e) {
     return question;
   }
@@ -40,10 +46,14 @@ export function formatAnswer(answer: string): string {
       output += json.response;
     } else if (json.answer) {
       output += json.answer;
-    } else if (json.correct) {
+    } else if (json.correct || json.correct === false) {
       output += json.correct;
     } else if (json.result) {
       output += json.result;
+    }
+
+    if (json.explanation) {
+      output += "\nExplanation:\n" + json.explanation;
     }
 
     if (output.length > 0) return output;
