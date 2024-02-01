@@ -1,5 +1,3 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from 'react';
 
@@ -148,7 +146,6 @@ function App() {
         </div>
       }
       {/* TODO: create ask question button to allow the student to get more detailed information about something they wonder bout the lecture*/}
-      <p>{history.map((elem) => elem.content)}</p>
     </div>
   );
 }
